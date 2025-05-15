@@ -685,21 +685,21 @@ update_proxy_app_menu_location() {
 }
 
 update_dns_app_menu_location() {
-    # smartdns
-    local smartdns_path="$BUILD_DIR/package/feeds/small8/luci-app-smartdns/luasrc/controller/smartdns.lua"
-    if [ -d "${smartdns_path%/*}" ] && [ -f "$smartdns_path" ]; then
-        local pos=$(grep -n "entry" "$smartdns_path" | head -n 1 | awk -F ":" '{print $1}')
-        if [ -n $pos ]; then
-            sed -i ''${pos}'i\	entry({"admin", "dns"}, firstchild(), "DNS", 29).dependent = false' "$smartdns_path"
-            sed -i 's/"services"/"dns"/g' "$smartdns_path"
-        fi
-    fi
+    # # smartdns
+    # local smartdns_path="$BUILD_DIR/package/feeds/small8/luci-app-smartdns/luasrc/controller/smartdns.lua"
+    # if [ -d "${smartdns_path%/*}" ] && [ -f "$smartdns_path" ]; then
+    #     local pos=$(grep -n "entry" "$smartdns_path" | head -n 1 | awk -F ":" '{print $1}')
+    #     if [ -n $pos ]; then
+    #         sed -i ''${pos}'i\	entry({"admin", "dns"}, firstchild(), "DNS", 29).dependent = false' "$smartdns_path"
+    #         sed -i 's/"services"/"dns"/g' "$smartdns_path"
+    #     fi
+    # fi
 
-    # mosdns
-    local mosdns_path="$BUILD_DIR/package/feeds/small8/luci-app-mosdns/root/usr/share/luci/menu.d/luci-app-mosdns.json"
-    if [ -d "${mosdns_path%/*}" ] && [ -f "$mosdns_path" ]; then
-        sed -i 's/\/services\//\/dns\//g' "$mosdns_path"
-    fi
+    # # mosdns
+    # local mosdns_path="$BUILD_DIR/package/feeds/small8/luci-app-mosdns/root/usr/share/luci/menu.d/luci-app-mosdns.json"
+    # if [ -d "${mosdns_path%/*}" ] && [ -f "$mosdns_path" ]; then
+    #     sed -i 's/\/services\//\/dns\//g' "$mosdns_path"
+    # fi
 
     # AdGuardHome
     local adg_path="$BUILD_DIR/package/feeds/small8/luci-app-adguardhome/luasrc/controller/AdGuardHome.lua"
@@ -767,7 +767,7 @@ main() {
     update_tcping
     add_ax6600_led
     set_custom_task
-    update_pw
+    #update_pw
     install_opkg_distfeeds
     update_nss_pbuf_performance
     set_build_signature
@@ -777,17 +777,17 @@ main() {
     fix_compile_coremark
     update_dnsmasq_conf
     add_backup_info_to_sysupgrade
-    optimize_smartDNS
-    update_mosdns_deconfig
+    #optimize_smartDNS
+    #update_mosdns_deconfig
     fix_quickstart
-    update_oaf_deconfig
+    #update_oaf_deconfig
     add_timecontrol
     add_gecoosac
     update_lucky
     install_feeds
     support_fw4_adg
     update_script_priority
-    fix_easytier
+    #fix_easytier
     update_geoip
     update_package "xray-core"
     # update_proxy_app_menu_location
